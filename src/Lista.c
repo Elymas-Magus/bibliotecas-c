@@ -275,3 +275,17 @@ quickSortParticionador(ArrayList l, int inicio, int fim, int (*compar)(const voi
 
     return dir;
 }
+
+ArrayList
+array_map(ArrayList l, void ** (* callback)(const void **, const int, const ArrayList l))
+{
+    int i = 0;
+    Node * no;
+    ArrayList newList = array_init();
+
+    for (no = l->first; no; no = no->next) {
+        array_push(newList, callback(no->content, i++, l));
+    }
+
+    return newList;
+}

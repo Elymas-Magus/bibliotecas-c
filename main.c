@@ -4,11 +4,13 @@
 #include "include/Lista.h"
 
 int compar (const void * a, const void * b);
+char * newListCallback (const void ** item, const int index, const ArrayList l);
 
 int main()
 {
     int i;
     ArrayList list = array_init();
+    ArrayList list2;
 
     array_push(list, "teste9");
     array_push(list, "teste4");
@@ -20,10 +22,10 @@ int main()
 
     printf("%d\n", list->length);
 
-    array_sort(list, compar);
+    list2 = array_map(list, newListCallback);
 
-    for (i = 0; i < list->length; i++) {
-        printf("%s\n", (char *) array_item(list, i));
+    for (Node * no = list2->first; no; no = no->next) {
+        printf("%s\n", (char *) no->content);
     }
 
     return 0;
@@ -32,4 +34,14 @@ int main()
 int compar (const void * a, const void * b)
 {
     return strcmp((char *) b, (char *) a);
+}
+
+char * newListCallback (const void ** item, const int index, const ArrayList l)
+{
+    char * buffer = (char *) malloc(strlen((char *) item) + 7);
+
+    strcpy(buffer, (char *) item);
+    strcat(buffer, " - cat");
+
+    return buffer;
 }
