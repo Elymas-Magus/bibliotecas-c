@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1648797956 source:d:\codes\libs c\custom-libs\main.c
+	<stdio.h>
+	<stdlib.h>
+	"include/String.h"
+	"include/Lista.h"
+
+1648783957 d:\codes\libs c\custom-libs\include\string.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1648794536 source:d:\codes\libs c\custom-libs\src\string.c
+	"String.h"
+
+1648797430 d:\codes\libs c\custom-libs\include\lista.h
+	<stdio.h>
+	<stdlib.h>
+	"ListDef.h"
+
+1648797281 d:\codes\libs c\custom-libs\include\listdef.h
+
+1648798718 source:d:\codes\libs c\custom-libs\src\lista.c
+	"../include/Lista.h"
+
