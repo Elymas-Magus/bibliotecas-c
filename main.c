@@ -5,6 +5,7 @@
 
 int compar (const void * a, const void * b);
 char * newListCallback (const void ** item, const int index, const ArrayList l);
+char * reduceCallback (void ** accum, const void ** item, const int index, const ArrayList l);
 
 int main()
 {
@@ -28,6 +29,8 @@ int main()
         printf("%s\n", (char *) no->content);
     }
 
+    printf("%s\n", array_reduce(list, reduceCallback));
+
     return 0;
 }
 
@@ -45,3 +48,22 @@ char * newListCallback (const void ** item, const int index, const ArrayList l)
 
     return buffer;
 }
+
+char * reduceCallback (void ** accum, const void ** item, const int index, const ArrayList l)
+{
+    char * buffer = NULL;
+    char * converted = (char *) item;
+    if (accum == NULL) {
+        buffer = (char *) malloc(strlen(converted));
+        buffer = "";
+    } else {
+        buffer = (char *) malloc(strlen((char *) accum) + strlen(converted) + 1);
+        buffer = (char *) accum;
+    }
+
+    strcat(buffer, converted);
+
+    printf("%s\n", buffer);
+    return buffer;
+}
+

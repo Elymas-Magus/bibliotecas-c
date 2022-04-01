@@ -34,4 +34,8 @@ Node * array_node(ArrayList l, void ** o, int (* compar)(const void ** a, const 
 
 ArrayList array_map(ArrayList l, void ** (* callback)(const void **, const int, const ArrayList l));
 
+ArrayList array_filter(ArrayList l, int (* callback)(const void **, const int, const ArrayList l));
+
+void ** array_reduce(ArrayList l, void ** (* callback)(void ** accum, const void **, const int, const ArrayList l));
+
 #endif // LISTA_H_INCLUDED

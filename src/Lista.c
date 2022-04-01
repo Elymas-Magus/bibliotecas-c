@@ -289,3 +289,34 @@ array_map(ArrayList l, void ** (* callback)(const void **, const int, const Arra
 
     return newList;
 }
+
+ArrayList
+array_filter(ArrayList l, int (* callback)(const void **, const int, const ArrayList l))
+{
+    int i = 0;
+    Node * no;
+    ArrayList newList = array_init();
+
+    for (no = l->first; no; no = no->next) {
+        if (callback(no->content, i++, l) == TRUE) {
+            array_push(newList, no->content);
+        }
+    }
+
+    return newList;
+}
+
+void **
+array_reduce(ArrayList l, void ** (* callback)(void ** accum, const void **, const int, const ArrayList l))
+{
+    int i = 0;
+    void ** accum = NULL;
+    Node * no;
+
+    for (no = l->first; no; no = no->next) {
+        accum = callback(accum, no->content, i++, l);
+    }
+
+    return accum;
+}
+
